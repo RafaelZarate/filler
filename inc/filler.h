@@ -6,7 +6,7 @@
 /*   By: rzarate <rzarate@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/29 03:57:11 by rzarate           #+#    #+#             */
-/*   Updated: 2018/03/30 05:11:05 by rzarate          ###   ########.fr       */
+/*   Updated: 2018/03/30 08:51:59 by rzarate          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,9 @@ typedef	struct	s_piece
 {
 	int		width;
 	int		height;
-	int		area;
-	int		*coords;
+	int		cells;
+	int		head[2];
+	int		**coords;
 	char	**map;
 }				t_piece;
 
@@ -58,7 +59,7 @@ typedef	struct	s_filler
 
 # define TRUE 1
 # define FALSE 0
-# define LOG_FILE "game_log.json"
+# define LOG_FILE "game_log.txt"
 
 /*
 **	MAIN FUNCTIONS
@@ -85,6 +86,6 @@ void	get_turn_data(t_filler *game);
 **	UTILITIES
 */
 
-int	*get_y_and_x(char *s);
+int	*get_y_and_x(t_filler *game);
 
 #endif

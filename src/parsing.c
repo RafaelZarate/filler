@@ -6,7 +6,7 @@
 /*   By: rzarate <rzarate@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/29 04:03:36 by rzarate           #+#    #+#             */
-/*   Updated: 2018/03/30 07:10:02 by rzarate          ###   ########.fr       */
+/*   Updated: 2018/03/30 08:52:04 by rzarate          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ void			get_player_data(t_filler *game)
 		game->player->c = 'o';
 	else if (game->player->n == 2)
 		game->player->c = 'x';
-	// fputc(game->player->c, game->fp);fputc('\n', game->fp);
+	fprintf(game->fp, "Character: %c - Number: %d\n", game->player->c, game->player->n);
+
 }
 /*
 **	Read board's dimensions, parse it and store it in 2d char array
@@ -54,7 +55,7 @@ static	void	get_board_data(t_filler *game)
 		get_next_line(0, &line);
 		while (++x < game->board->width + 4)
 			game->board->map[y][x - 4] = line[x];
-		fputs(game->board->map[y], game->fp);fputc('\n', game->fp);
+		fprintf(game->fp, "%s\n", game->board->map[y]);
 	}
 }
 
@@ -65,16 +66,11 @@ static	void	get_board_data(t_filler *game)
 static	void	get_piece_data(t_filler *game)
 {
 	char	*line;
-	int		*height_width;
 	int		x;
 	int		y;
 
 	y = -1;
-	get_next_line(0, &line);
-	height_width = get_y_and_x(line);
-	game->piece->height = height_width[0];
-	game->piece->width = height_width[1];
-	free(height_width);
+	get_y_and_x(line, game);
 	game->piece->map = (char **)ft_memalloc(sizeof(char *) * game->piece->height);
 	while (++y < game->piece->height)
 	{
@@ -85,24 +81,11 @@ static	void	get_piece_data(t_filler *game)
 		{
 			game->piece->map[y][x] = line[x];
 			if (game->piece->map[y][x] == '*')
-				game->piece->area++;
-			fputs(game->piece->map[y], game->fp);fputc('\n', game->fp);
+				game->piece->cells++;
 		}
+		fprintf(game->fp, "%s\n", game->piece->map[y]);
 	}
 }
-
-/*
-**	Generate piece metadata for easier manipulation
-*/
-
-// void	generate_piece_metadata(t_filler *game)
-// {
-// 	int	x;
-// 	int	y;
-
-// 	y = -1;
-// 	while (++y < game->board)
-// }
 
 /*
 **	Single function that controls the flow of the parsing

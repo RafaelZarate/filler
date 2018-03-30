@@ -7,7 +7,8 @@ CC = gcc
 #When compiling. you need to add your .a lib
 CFILES = src/main.c \
 			src/parsing.c \
-			src/utilities.c
+			src/pre-procesing.c \
+			src/utilities.c 
 
 
 OBJECTS = $(CFILES:.c=.o)
