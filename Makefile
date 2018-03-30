@@ -5,9 +5,10 @@ CFLAGS = -Wall -Wextra -Werror
 CC = gcc
 
 #When compiling. you need to add your .a lib
-CFILES = src/libft/libft.a \
-			src/main.c \
-			src/parsing.c
+CFILES = src/main.c \
+			src/parsing.c \
+			src/utilities.c
+
 
 OBJECTS = $(CFILES:.c=.o)
 
@@ -21,7 +22,7 @@ LIBF = $(MAKE) $(LIB) fclean
 all: $(NAME)
 
 $(NAME):
-	@$(CC) $(CFLAGS) $(CFILES) -o $(NAME) 
+	@$(CC) $(CFLAGS) $(CFILES) $(LIB)libft.a -o $(NAME) 
 	@echo "Filler: Successfull compilation"
 
 clean:

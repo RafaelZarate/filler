@@ -6,7 +6,7 @@
 /*   By: rzarate <rzarate@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/29 03:57:11 by rzarate           #+#    #+#             */
-/*   Updated: 2018/03/29 21:11:11 by rzarate          ###   ########.fr       */
+/*   Updated: 2018/03/30 05:11:05 by rzarate          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,11 @@ typedef	struct s_board
 
 typedef	struct	s_piece
 {
-	int	width;
-	int	height;
-	int	size;
-	int	*coords;
+	int		width;
+	int		height;
+	int		area;
+	int		*coords;
+	char	**map;
 }				t_piece;
 
 typedef	struct	s_filler
@@ -63,13 +64,15 @@ typedef	struct	s_filler
 **	MAIN FUNCTIONS
 */
 
+void	initialize_game(t_filler *game);
+
 /*
 **	PARSING
 */
 
-void	get_player_data(t_filler *game, FILE *fd);
+void	get_player_data(t_filler *game);
 void	get_turn_data(t_filler *game);
-void	get_board_data(t_filler *game);
+
 /*
 **	ALGORITHM
 */
@@ -82,4 +85,6 @@ void	get_board_data(t_filler *game);
 **	UTILITIES
 */
 
-#endif // !1
+int	*get_y_and_x(char *s);
+
+#endif
