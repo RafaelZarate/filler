@@ -21,18 +21,19 @@ LIBF = $(MAKE) $(LIB) fclean
 all: $(NAME)
 
 $(NAME):
-	@$(LIBM)
-	@echo "LIBFT: Library successfully compiled"
 	@$(CC) $(CFLAGS) $(CFILES) -o $(NAME) 
 	@echo "Filler: Successfull compilation"
 
 clean:
-	@$(LIBC)
 	@/bin/rm -f $(OBJECTS)
 	@echo "Filler: Removed .o files"
 
-fclean: clean
+libftre:
 	@$(LIBF)
+	@$(LIBM)
+	@echo "LIBFT: Library successfully compiled"
+
+fclean: clean
 	@echo "LIBFT: Removed .a"
 	@/bin/rm -f $(NAME)
 	@echo "Filler: Removed exacutable"
