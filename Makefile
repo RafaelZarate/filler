@@ -7,7 +7,7 @@ CC = gcc
 #When compiling. you need to add your .a lib
 CFILES = src/main.c \
 			src/parsing.c \
-			src/pre-procesing.c \
+			src/pre-processing.c \
 			src/utilities.c 
 
 

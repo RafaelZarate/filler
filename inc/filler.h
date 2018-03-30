@@ -6,7 +6,7 @@
 /*   By: rzarate <rzarate@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/29 03:57:11 by rzarate           #+#    #+#             */
-/*   Updated: 2018/03/30 08:51:59 by rzarate          ###   ########.fr       */
+/*   Updated: 2018/03/30 09:39:19 by rzarate          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef	struct	s_piece
 	int		cells;
 	int		head[2];
 	int		**coords;
+	int		**adjusted_coords;
 	char	**map;
 }				t_piece;
 
@@ -73,6 +74,7 @@ void	initialize_game(t_filler *game);
 
 void	get_player_data(t_filler *game);
 void	get_turn_data(t_filler *game);
+void	generate_piece_metadata(t_filler *game);
 
 /*
 **	ALGORITHM
@@ -86,6 +88,6 @@ void	get_turn_data(t_filler *game);
 **	UTILITIES
 */
 
-int	*get_y_and_x(t_filler *game);
+void	get_y_and_x(t_filler *game);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: rzarate <rzarate@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/29 04:03:36 by rzarate           #+#    #+#             */
-/*   Updated: 2018/03/30 08:52:04 by rzarate          ###   ########.fr       */
+/*   Updated: 2018/03/30 09:39:04 by rzarate          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,16 +36,11 @@ void			get_player_data(t_filler *game)
 static	void	get_board_data(t_filler *game)
 {
 	char	*line;
-	int		*height_width;
 	int		x;
 	int		y;
 	
 	y = -1;
-	get_next_line(0, &line);
-	height_width = get_y_and_x(line);
-	game->board->height = height_width[0];
-	game->board->width = height_width[1];
-	free(height_width);
+	get_y_and_x(game);
 	get_next_line(0, &line);
 	game->board->map = (char **)ft_memalloc(sizeof(char *) * game->board->height);
 	while (++y < game->board->height)
@@ -61,6 +56,7 @@ static	void	get_board_data(t_filler *game)
 
 /*
 **	Read piece's dimensions, parse it and store it in 2d char array
+**	gather amount of cells as well for pre-processing
 */
 
 static	void	get_piece_data(t_filler *game)
@@ -70,7 +66,7 @@ static	void	get_piece_data(t_filler *game)
 	int		y;
 
 	y = -1;
-	get_y_and_x(line, game);
+	get_y_and_x(game);
 	game->piece->map = (char **)ft_memalloc(sizeof(char *) * game->piece->height);
 	while (++y < game->piece->height)
 	{

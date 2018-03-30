@@ -6,7 +6,7 @@
 /*   By: rzarate <rzarate@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/30 03:56:51 by rzarate           #+#    #+#             */
-/*   Updated: 2018/03/30 08:51:55 by rzarate          ###   ########.fr       */
+/*   Updated: 2018/03/30 08:54:50 by rzarate          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,19 +35,14 @@ void	initialize_game(t_filler *game)
 void	get_y_and_x(t_filler *game)
 {
 	char	**splitted_line;
-	int		int_arr[2];
 	char	*line;
 
 	get_next_line(0, &line);
-	int_arr = (int *)ft_memalloc(sizeof(int) * 2);
-	splitted_line = ft_strsplit(s, ' ');
-	int_arr[0] = ft_atoi(splitted_line[1]);
-	int_arr[1] = ft_atoi(splitted_line[2]);
+	splitted_line = ft_strsplit(line, ' ');
+	game->piece->height = ft_atoi(splitted_line[1]);
+	game->piece->width = ft_atoi(splitted_line[2]);
 	free(splitted_line[0]);
 	free(splitted_line[1]);
 	free(splitted_line[2]);
 	free(splitted_line);
-	game->piece->height = int_arr[0];
-	game->piece->width = int_arr[1];
-	return (int_arr);
 }
