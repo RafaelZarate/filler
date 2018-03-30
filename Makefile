@@ -6,7 +6,8 @@ CC = gcc
 
 #When compiling. you need to add your .a lib
 CFILES = src/libft/libft.a \
-			src/main.c
+			src/main.c \
+			src/parsing.c
 
 OBJECTS = $(CFILES:.c=.o)
 
@@ -27,14 +28,13 @@ $(NAME):
 
 clean:
 	@$(LIBC)
-	@/bin/rm -f $(OBJECTS_C)
-	@/bin/rm -f $(OBJECTS_P)
+	@/bin/rm -f $(OBJECTS)
 	@echo "Filler: Removed .o files"
 
 fclean: clean
 	@$(LIBF)
 	@echo "LIBFT: Removed .a"
-	@/bin/rm -f $(NAME_C) $(NAME_P)
+	@/bin/rm -f $(NAME)
 	@echo "Filler: Removed exacutable"
 
 re: fclean all
