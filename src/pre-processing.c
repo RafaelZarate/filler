@@ -6,7 +6,7 @@
 /*   By: rzarate <rzarate@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/30 08:18:34 by rzarate           #+#    #+#             */
-/*   Updated: 2018/03/31 05:14:23 by rzarate          ###   ########.fr       */
+/*   Updated: 2018/03/31 06:57:24 by rzarate          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,8 @@ static	void	adjust_piece_coords(t_filler *game)
 {
 	int i;
 
-	i = 0;
+	i = -1;
 	game->piece->adjusted_coords = (int **)ft_memalloc(sizeof(int *) * game->piece->cells);
-	game->piece->adjusted_coords[0][0] = game->piece->coords[0][0];
-	game->piece->adjusted_coords[0][1] = game->piece->coords[0][1];
 	while (++i < game->piece->cells)
 	{
 		game->piece->adjusted_coords[i][0] = game->piece->coords[i][0] - game->piece->coords[0][0];

@@ -6,7 +6,7 @@
 /*   By: rzarate <rzarate@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/29 04:03:36 by rzarate           #+#    #+#             */
-/*   Updated: 2018/03/31 04:54:57 by rzarate          ###   ########.fr       */
+/*   Updated: 2018/03/31 05:25:28 by rzarate          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void			get_player_data(t_filler *game)
 		game->player->opp_c = 'o';
 		game->player->opp_C = 'O';
 	}
-	fprintf(game->fp, "Character: %c - Number: %d\n", game->player->c, game->player->n);
+	fprintf(game->fp, "Character: %c - Number: %d\n", game->player->my_c, game->player->my_n);
 
 }
 /*

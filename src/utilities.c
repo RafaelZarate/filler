@@ -6,7 +6,7 @@
 /*   By: rzarate <rzarate@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/30 03:56:51 by rzarate           #+#    #+#             */
-/*   Updated: 2018/03/31 02:08:47 by rzarate          ###   ########.fr       */
+/*   Updated: 2018/03/31 06:18:18 by rzarate          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	initialize_game(t_filler *game)
 	game->fp = fopen(LOG_FILE, "a+");
 	game->piece = (t_piece *)ft_memalloc(sizeof(t_piece));
 	game->player = (t_player *)ft_memalloc(sizeof(t_player));
-	game->moves = (t_moves *)ft_memalloc(sizeof(t_moves));
+	game->moves = NULL;
 	get_player_data(game);
 }
 

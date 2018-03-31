@@ -9,6 +9,7 @@ CFILES = src/main.c \
 			src/parsing.c \
 			src/pre-processing.c \
 			src/moves.c \
+			src/linked-list-funtions.c  \
 			src/utilities.c 
 
 

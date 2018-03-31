@@ -6,7 +6,7 @@
 /*   By: rzarate <rzarate@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/29 03:57:11 by rzarate           #+#    #+#             */
-/*   Updated: 2018/03/31 04:54:22 by rzarate          ###   ########.fr       */
+/*   Updated: 2018/03/31 08:34:19 by rzarate          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,12 @@ typedef	struct	s_board
 	int		center;
 	int		center_coords[2];
 	char	**map;
+	int		**heat_map;
 }				t_board;
 
 typedef	struct	s_piece
 {
+	int		off_set;
 	int		uppermost;
 	int		lowermost;
 	int		leftmost;
@@ -95,7 +97,7 @@ void	generate_piece_metadata(t_filler *game);
 **	ALGORITHM
 */
 
-void	get_best_move(t_filler *game);
+void	make_move(t_filler *game);
 
 /*
 **	VISUALIZER
@@ -106,5 +108,10 @@ void	get_best_move(t_filler *game);
 */
 
 void	get_y_and_x(t_filler *game, int i);
+
+t_moves	*new_move(int y, int x, int score);
+void	add_move(t_moves **moves, t_moves *new_move);
+void	delone_move(t_moves **moves);
+void	del_moves(t_moves **moves);
 
 #endif
