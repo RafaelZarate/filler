@@ -6,7 +6,7 @@
 /*   By: rzarate <rzarate@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/29 04:03:36 by rzarate           #+#    #+#             */
-/*   Updated: 2018/03/30 09:39:04 by rzarate          ###   ########.fr       */
+/*   Updated: 2018/03/31 04:54:57 by rzarate          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,23 @@ void			get_player_data(t_filler *game)
 	char	*line;
 	
 	get_next_line(0, &line);
-	game->player->n = ft_atoi(ft_strchr(line, 'p') + 1);
-	if (game->player->n == 1)
-		game->player->c = 'o';
-	else if (game->player->n == 2)
-		game->player->c = 'x';
+	game->player->my_n = ft_atoi(ft_strchr(line, 'p') + 1);
+	if (game->player->my_n == 1)
+	{
+		game->player->my_c = 'o';
+		game->player->my_C = 'O';
+		game->player->opp_n = 2;
+		game->player->opp_c = 'x';
+		game->player->opp_C = 'X';
+	}
+	else if (game->player->my_n == 2)
+	{
+		game->player->my_c = 'x';
+		game->player->my_C = 'X';
+		game->player->opp_n = 1;
+		game->player->opp_c = 'o';
+		game->player->opp_C = 'O';
+	}
 	fprintf(game->fp, "Character: %c - Number: %d\n", game->player->c, game->player->n);
 
 }
@@ -40,7 +52,7 @@ static	void	get_board_data(t_filler *game)
 	int		y;
 	
 	y = -1;
-	get_y_and_x(game);
+	get_y_and_x(game, 1);
 	get_next_line(0, &line);
 	game->board->map = (char **)ft_memalloc(sizeof(char *) * game->board->height);
 	while (++y < game->board->height)
@@ -66,7 +78,7 @@ static	void	get_piece_data(t_filler *game)
 	int		y;
 
 	y = -1;
-	get_y_and_x(game);
+	get_y_and_x(game, 2);
 	game->piece->map = (char **)ft_memalloc(sizeof(char *) * game->piece->height);
 	while (++y < game->piece->height)
 	{

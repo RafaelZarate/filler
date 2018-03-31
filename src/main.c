@@ -6,7 +6,7 @@
 /*   By: rzarate <rzarate@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/29 03:58:01 by rzarate           #+#    #+#             */
-/*   Updated: 2018/03/30 08:28:48 by rzarate          ###   ########.fr       */
+/*   Updated: 2018/03/31 02:08:15 by rzarate          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ int	main(void)
 	while (TRUE)
 	{
 		get_turn_data(game);
+		get_best_move(game);
 		ft_putstr("2 2\n");
 	}
-	
 	fclose(game->fp);
 	return (0);
 }

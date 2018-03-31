@@ -8,6 +8,7 @@ CC = gcc
 CFILES = src/main.c \
 			src/parsing.c \
 			src/pre-processing.c \
+			src/moves.c \
 			src/utilities.c 
 
 
