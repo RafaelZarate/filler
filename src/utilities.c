@@ -6,7 +6,7 @@
 /*   By: rzarate <rzarate@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/30 03:56:51 by rzarate           #+#    #+#             */
-/*   Updated: 2018/03/31 06:18:18 by rzarate          ###   ########.fr       */
+/*   Updated: 2018/03/31 12:48:05 by rzarate          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,28 @@ void	get_y_and_x(t_filler *game, int i)
 	free(splitted_line[1]);
 	free(splitted_line[2]);
 	free(splitted_line);
+}
+
+void	end_turn(t_filler *game)
+{
+	int	i_board;
+	int	i_coords;
+	int	i_piece;
+
+	i_board = -1;
+	i_coords = -1;
+	i_piece = -1;
+	while (++i_board < game->board->height)
+	{
+		free(game->board->map[i_board]);
+		free(game->board->heatmap[i_board]);
+	}
+	while (++i_coords < game->piece->cells)
+	{
+		free(game->piece->coords[i_coords]);
+		free(game->piece->adjusted_coords[i_coords]);
+	}
+	while (++i_piece < game->piece->height)
+		free(game->piece->map[i_piece]);
+	del_moves(&(game->moves));
 }

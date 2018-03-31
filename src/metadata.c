@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pre-processing.c                                   :+:      :+:    :+:   */
+/*   metadata.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rzarate <rzarate@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/30 08:18:34 by rzarate           #+#    #+#             */
-/*   Updated: 2018/03/31 06:57:24 by rzarate          ###   ########.fr       */
+/*   Updated: 2018/03/31 16:07:23 by rzarate          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ static	void	get_piece_coords(t_filler *game)
 				game->piece->coords[i] = (int *)ft_memalloc(sizeof(int) * 2);
 				game->piece->coords[i][0] = y;
 				game->piece->coords[i][1] = x;
+				i++;
+				// printf("Coords for: %d <%d, %d>\n", i, y, x);
 			}
 		}
 	}
@@ -51,10 +53,13 @@ static	void	adjust_piece_coords(t_filler *game)
 
 	i = -1;
 	game->piece->adjusted_coords = (int **)ft_memalloc(sizeof(int *) * game->piece->cells);
+	// printf("%d\n", game->piece->cells);
 	while (++i < game->piece->cells)
 	{
+		game->piece->adjusted_coords[i] = (int *)ft_memalloc(sizeof(int) * 2);
 		game->piece->adjusted_coords[i][0] = game->piece->coords[i][0] - game->piece->coords[0][0];
 		game->piece->adjusted_coords[i][1] = game->piece->coords[i][1] - game->piece->coords[0][1];
+		// printf("Coords for: %d <%d, %d>\n", i, game->piece->adjusted_coords[i][0], game->piece->adjusted_coords[i][1]);
 	}
 }
 
@@ -83,16 +88,17 @@ static	void	get_coords_limits(t_filler *game)
 		if (game->piece->adjusted_coords[i][1] > game->piece->rightmost)
 			game->piece->rightmost = game->piece->adjusted_coords[i][1];
 	}
-
+	// printf("UP: %d, LO: %d, LE: %d, RI: %d\n", game->piece->uppermost, game->piece->lowermost, game->piece->leftmost, game->piece->rightmost);
 }
 
 /*
-**	Generate piece metadata for easier manipulation
+**	Generate piece and board metadata that will be needed to run the algoridthm
 */
 
-void			generate_piece_metadata(t_filler *game)
+void			generate_metadata(t_filler *game)
 {
 	get_piece_coords(game);
 	adjust_piece_coords(game);
 	get_coords_limits(game);
+	create_heatmap(game);
 }

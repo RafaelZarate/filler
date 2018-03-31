@@ -6,7 +6,7 @@
 /*   By: rzarate <rzarate@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/31 02:09:54 by rzarate           #+#    #+#             */
-/*   Updated: 2018/03/31 06:59:15 by rzarate          ###   ########.fr       */
+/*   Updated: 2018/03/31 12:42:28 by rzarate          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,20 +20,20 @@ static	int	valid_placement(t_filler *game, int y, int x)
 {
 	int i;
 	int	c;
-	int	tmp_y;
-	int	tmp_x;
+	int	adj_y;
+	int	adj_x;
 
 	i = -1;
 	c = 0;
 	while (++i < game->piece->cells)
 	{
-		tmp_y = y + game->piece->adjusted_coords[i][0];
-		tmp_x = x + game->piece->adjusted_coords[i][1];
-		if (game->board->map[tmp_x][tmp_y] == game->player->opp_c ||
-				game->board->map[tmp_x][tmp_y] == game->player->opp_C)
+		adj_y = y + game->piece->adjusted_coords[i][0];
+		adj_x = x + game->piece->adjusted_coords[i][1];
+		if (game->board->map[adj_x][adj_y] == game->player->opp_c ||
+				game->board->map[adj_x][adj_y] == game->player->opp_C)
 			return (FALSE);
-		else if (game->board->map[tmp_x][tmp_y] == game->player->my_c ||
-				game->board->map[tmp_x][tmp_y] == game->player->my_C)
+		else if (game->board->map[adj_x][adj_y] == game->player->my_c ||
+				game->board->map[adj_x][adj_y] == game->player->my_C)
 		{
 			if (c > 0)
 				return (FALSE);
@@ -63,8 +63,7 @@ static	void	get_possible_moves(t_filler *game)
 		{
 			if (valid_placement(game, y, x))
 			{
-				// Calculate score with heatmap
-				score = 0;
+				score = get_score(game, y, x);
 				add_move(&(game->moves), new_move(y, x, score));
 			}
 		}
@@ -96,15 +95,28 @@ static	void	execute_best_move(t_filler *game)
 	}
 	ft_putnbr(coords_of_best_move[0] - game->piece->head[0]);
 	ft_putchar(' ');
-	ft_putnbr(coords_of_best_move[1] - game->piece->head[0]);
+	ft_putnbr(coords_of_best_move[1] - game->piece->head[1]);
 	ft_putchar('\n');
 }
 
-void	make_move(t_filler *game)
+/*
+**	Evaluates map and makes the move with the highest score
+**	higher scores are generated when the move gets you closer to the
+**	oponent
+*/
+
+int		make_move(t_filler *game)
 {
 	get_possible_moves(game);
 	if (!game->moves)
-		return ;
+	{
+		end_turn(game);
+		return (FALSE);
+	}
 	else
+	{
 		execute_best_move(game);
+		end_turn(game);
+		return (TRUE);
+	}
 }

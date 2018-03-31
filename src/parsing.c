@@ -6,7 +6,7 @@
 /*   By: rzarate <rzarate@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/29 04:03:36 by rzarate           #+#    #+#             */
-/*   Updated: 2018/03/31 05:25:28 by rzarate          ###   ########.fr       */
+/*   Updated: 2018/03/31 12:29:01 by rzarate          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,5 +110,5 @@ void			get_turn_data(t_filler *game)
 	game->piece = piece;
 	get_board_data(game);
 	get_piece_data(game);
-	// generate_piece_metadata(game);
+	generate_metadata(game);
 }
