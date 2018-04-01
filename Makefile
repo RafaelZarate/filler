@@ -10,7 +10,7 @@ CFILES = src/main.c \
 			src/metadata.c \
 			src/heatmap.c \
 			src/moves.c \
-			src/linked-list-funtions.c  \
+			src/linked_list_funtions.c  \
 			src/utilities.c 
 
 

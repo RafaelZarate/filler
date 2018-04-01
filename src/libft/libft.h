@@ -6,7 +6,7 @@
 /*   By: rzarate <rzarate@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 10:26:57 by rzarate           #+#    #+#             */
-/*   Updated: 2018/03/29 18:51:47 by rzarate          ###   ########.fr       */
+/*   Updated: 2018/04/01 09:11:08 by rzarate          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct		s_list
 }					t_list;
 
 int					get_next_line(const int fd, char **line);
+void				ft_2d_strdel(char **arr, int size);
 
 size_t				ft_strlen(const char *s);
 size_t				ft_strlen_wc(wchar_t *s);

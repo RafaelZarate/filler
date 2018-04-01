@@ -6,7 +6,7 @@
 /*   By: rzarate <rzarate@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/29 03:57:11 by rzarate           #+#    #+#             */
-/*   Updated: 2018/03/31 12:41:37 by rzarate          ###   ########.fr       */
+/*   Updated: 2018/04/01 08:46:35 by rzarate          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ typedef	struct	s_player
 	int		my_n;
 	char	my_c;
 	char	my_C;
-	int		opp_n;
 	char	opp_c;
 	char	opp_C;
 }				t_player;
@@ -58,7 +57,7 @@ typedef	struct	s_piece
 	int		cells;
 	int		head[2];
 	int		**coords;
-	int		**adjusted_coords;
+	int		**adj_coords;
 	char	**map;
 }				t_piece;
 
@@ -77,7 +76,10 @@ typedef	struct	s_filler
 
 # define TRUE 1
 # define FALSE 0
+
 # define LOG_FILE "game_log.txt"
+# define ERROR_INITIALIZE "An error ocurred while initializing the game\n"
+# define ERROR_TURN "An error occurred while trying to place piece\n"
 
 /*
 **	PARSING
@@ -86,6 +88,7 @@ typedef	struct	s_filler
 void	get_player_data(t_filler *game);
 void	get_turn_data(t_filler *game);
 void	generate_metadata(t_filler *game);
+
 /*
 **	ALGORITHM
 */
@@ -102,10 +105,12 @@ void	create_heatmap(t_filler *game);
 **	UTILITIES
 */
 
-void	get_y_and_x(t_filler *game, int i);
+void	get_y_and_x(int *y, int *x, t_filler *game);
 
 void	initialize_game(t_filler *game);
+void	finalize_game(t_filler *game);
 void	end_turn(t_filler *game);
+void	error_exit(t_filler *game, int stage);
 
 t_moves	*new_move(int y, int x, int score);
 void	add_move(t_moves **moves, t_moves *new_move);

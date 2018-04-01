@@ -6,7 +6,7 @@
 /*   By: rzarate <rzarate@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/31 02:09:54 by rzarate           #+#    #+#             */
-/*   Updated: 2018/03/31 12:42:28 by rzarate          ###   ########.fr       */
+/*   Updated: 2018/04/01 08:51:20 by rzarate          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 **	Verify if piece can be place at the current coordinate
 */
 
-static	int	valid_placement(t_filler *game, int y, int x)
+static	int		valid_placement(t_filler *game, int y, int x)
 {
 	int i;
 	int	c;
@@ -27,25 +27,24 @@ static	int	valid_placement(t_filler *game, int y, int x)
 	c = 0;
 	while (++i < game->piece->cells)
 	{
-		adj_y = y + game->piece->adjusted_coords[i][0];
-		adj_x = x + game->piece->adjusted_coords[i][1];
-		if (game->board->map[adj_x][adj_y] == game->player->opp_c ||
-				game->board->map[adj_x][adj_y] == game->player->opp_C)
+		adj_y = y + game->piece->adj_coords[i][0];
+		adj_x = x + game->piece->adj_coords[i][1];
+		if (game->board->map[adj_y][adj_x] == game->player->opp_c ||
+				game->board->map[adj_y][adj_x] == game->player->opp_C)
 			return (FALSE);
-		else if (game->board->map[adj_x][adj_y] == game->player->my_c ||
-				game->board->map[adj_x][adj_y] == game->player->my_C)
-		{
-			if (c > 0)
-				return (FALSE);
+		else if (game->board->map[adj_y][adj_x] == game->player->my_c ||
+				game->board->map[adj_y][adj_x] == game->player->my_C)
 			c++;
-		}
 	}
-	return (TRUE);
+	if (c == 1)
+		return (TRUE);
+	else
+		return (FALSE);
 }
 
 /*
 **	Iterates through board to find all the possible moves that can be done
-**	I used some of the piece's metadata to make sure the program doesn't segfault
+**	used some of the piece's metadata to make sure the program doesn't segfault
 **	by looking for a cell outside of the arrays
 */
 
@@ -61,7 +60,7 @@ static	void	get_possible_moves(t_filler *game)
 		x = -1 - game->piece->leftmost;
 		while (++x < game->board->width - game->piece->rightmost)
 		{
-			if (valid_placement(game, y, x))
+			if (valid_placement(game, y, x) == TRUE)
 			{
 				score = get_score(game, y, x);
 				add_move(&(game->moves), new_move(y, x, score));
@@ -81,11 +80,11 @@ static	void	execute_best_move(t_filler *game)
 	int		score_comp;
 	int		coords_of_best_move[2];
 
-	score_comp = INT_MIN;
+	score_comp = INT_MAX;
 	tmp = game->moves;
 	while (tmp)
 	{
-		if (tmp->score > score_comp)
+		if (tmp->score < score_comp)
 		{
 			score_comp = tmp->score;
 			coords_of_best_move[0] = tmp->coords[0];
@@ -105,7 +104,7 @@ static	void	execute_best_move(t_filler *game)
 **	oponent
 */
 
-int		make_move(t_filler *game)
+int				make_move(t_filler *game)
 {
 	get_possible_moves(game);
 	if (!game->moves)
