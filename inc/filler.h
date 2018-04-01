@@ -6,7 +6,7 @@
 /*   By: rzarate <rzarate@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/29 03:57:11 by rzarate           #+#    #+#             */
-/*   Updated: 2018/04/01 08:46:35 by rzarate          ###   ########.fr       */
+/*   Updated: 2018/04/01 09:18:23 by rzarate          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,14 +98,8 @@ int		get_score(t_filler *game, int y, int x);
 void	create_heatmap(t_filler *game);
 
 /*
-**	VISUALIZER
-*/
-
-/*
 **	UTILITIES
 */
-
-void	get_y_and_x(int *y, int *x, t_filler *game);
 
 void	initialize_game(t_filler *game);
 void	finalize_game(t_filler *game);

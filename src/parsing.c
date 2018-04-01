@@ -6,7 +6,7 @@
 /*   By: rzarate <rzarate@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/29 04:03:36 by rzarate           #+#    #+#             */
-/*   Updated: 2018/04/01 09:15:18 by rzarate          ###   ########.fr       */
+/*   Updated: 2018/04/01 09:29:35 by rzarate          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,6 @@ void			get_player_data(t_filler *game)
 static	void	get_board_data(t_board *board, t_filler *game)
 {
 	char	*line;
-	int		x;
 	int		y;
 
 	y = -1;
@@ -89,7 +88,6 @@ static	void	get_board_data(t_board *board, t_filler *game)
 	board->map = (char **)ft_memalloc(sizeof(char *) * board->height);
 	while (++y < board->height)
 	{
-		x = 3;
 		(!(get_next_line(0, &line) > 0)) ? error_exit(game, 2) : 0;
 		if ((int)ft_strlen(line) != board->width + 4)
 		{
