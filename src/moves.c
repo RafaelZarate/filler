@@ -6,7 +6,7 @@
 /*   By: rzarate <rzarate@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/31 02:09:54 by rzarate           #+#    #+#             */
-/*   Updated: 2018/04/01 08:51:20 by rzarate          ###   ########.fr       */
+/*   Updated: 2018/04/01 16:13:39 by rzarate          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,9 +92,9 @@ static	void	execute_best_move(t_filler *game)
 		}
 		tmp = tmp->next;
 	}
-	ft_putnbr(coords_of_best_move[0] - game->piece->head[0]);
+	ft_putnbr(coords_of_best_move[0] - game->piece->coords[0][0]);
 	ft_putchar(' ');
-	ft_putnbr(coords_of_best_move[1] - game->piece->head[1]);
+	ft_putnbr(coords_of_best_move[1] - game->piece->coords[0][1]);
 	ft_putchar('\n');
 }
 
