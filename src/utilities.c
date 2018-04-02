@@ -6,7 +6,7 @@
 /*   By: rzarate <rzarate@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/30 03:56:51 by rzarate           #+#    #+#             */
-/*   Updated: 2018/04/01 15:56:45 by rzarate          ###   ########.fr       */
+/*   Updated: 2018/04/02 11:34:41 by rzarate          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,7 @@
 
 void	initialize_game(t_filler *game)
 {
-	game->board = (t_board *)ft_memalloc(sizeof(t_board));
 	game->fp = fopen(LOG_FILE, "a+");
-	game->piece = (t_piece *)ft_memalloc(sizeof(t_piece));
 	game->player = (t_player *)ft_memalloc(sizeof(t_player));
 	game->moves = NULL;
 	get_player_data(game);
@@ -33,34 +31,38 @@ void	initialize_game(t_filler *game)
 
 void	finalize_game(t_filler *game)
 {
-	free(game->board);
-	free(game->piece);
 	free(game->player);
 	fclose(game->fp);
+	free(game);
 }
 
 void	end_turn(t_filler *game)
 {
-	int	i_board;
-	int	i_coords;
-	int	i_piece;
+	int	i;
 
-	i_board = -1;
-	i_coords = -1;
-	i_piece = -1;
-	while (++i_board < game->board->height)
+	i = -1;
+	while (++i < game->board->height)
 	{
-		ft_strdel(&game->board->map[i_board]);
-		free(game->board->heatmap[i_board]);
+		ft_strdel(&(game->board->map[i]));
+		free(game->board->heatmap[i]);
 	}
-	while (++i_coords < game->piece->cells)
+	free(game->board->map);
+	free(game->board->heatmap);
+	i = -1;
+	while (++i < game->piece->cells)
 	{
-		free(game->piece->coords[i_coords]);
-		free(game->piece->adj_coords[i_coords]);
+		free(game->piece->coords[i]);
+		free(game->piece->adj_coords[i]);
 	}
-	while (++i_piece < game->piece->height)
-		ft_strdel(&game->piece->map[i_piece]);
+	free(game->piece->coords);
+	free(game->piece->adj_coords);
+	i = -1;
+	while (++i < game->piece->height)
+		ft_strdel(&game->piece->map[i]);
+	free(game->piece->map);
 	del_moves(&game->moves);
+	free(game->board);
+	free(game->piece);
 }
 
 /*

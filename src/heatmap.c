@@ -6,7 +6,7 @@
 /*   By: rzarate <rzarate@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/31 08:29:09 by rzarate           #+#    #+#             */
-/*   Updated: 2018/04/01 18:23:07 by rzarate          ###   ########.fr       */
+/*   Updated: 2018/04/02 11:43:22 by rzarate          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static	void	initiate_heatmap(t_filler *game)
 					game->board->map[y][x] == game->player->opp_C)
 				game->board->heatmap[y][x] = 0;
 			else
-				game->board->heatmap[y][x] = INT_MIN;
+				game->board->heatmap[y][x] = -10;
 		}
 	}
 }
@@ -105,14 +105,6 @@ void			create_heatmap(t_filler *game)
 					set_adyacent_cells(game->board, y, x, i);
 			}
 		}
-	}
-	y = -1;
-	while (++y < game->board->height)
-	{
-		x = -1;
-		while (++x < game->board->width)
-			ft_putnbr(game->board->heatmap[y][x]);
-		ft_putchar('\n');
 	}
 }
 

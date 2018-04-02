@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   linked-list-funtions.c                             :+:      :+:    :+:   */
+/*   linked_list_funtions.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rzarate <rzarate@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/31 06:07:04 by rzarate           #+#    #+#             */
-/*   Updated: 2018/04/01 08:42:27 by rzarate          ###   ########.fr       */
+/*   Updated: 2018/04/02 10:10:20 by rzarate          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,10 @@ void	delone_move(t_moves **moves)
 
 void	del_moves(t_moves **moves)
 {
-	while (*moves)
-		delone_move(moves);
+	if (moves)
+	{
+		while (*moves)
+			delone_move(moves);
+	}
+	moves = NULL;
 }

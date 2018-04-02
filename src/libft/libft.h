@@ -6,7 +6,7 @@
 /*   By: rzarate <rzarate@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 10:26:57 by rzarate           #+#    #+#             */
-/*   Updated: 2018/04/01 09:11:08 by rzarate          ###   ########.fr       */
+/*   Updated: 2018/04/02 10:33:40 by rzarate          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ char				*ft_strtrim(char const *s);
 char				*ft_strtrimc(char const *s, char c);
 int					ft_countwords(char *s, char c);
 int					ft_countnums(char *s);
-char				**ft_strsplit(char const *s, char c);
+char				**ft_strsplit(char *s, char c);
 int					n_digits(intmax_t n);
 int					n_ldigits(long n);
 char				*ft_itoa(intmax_t n);
