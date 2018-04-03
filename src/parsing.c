@@ -6,7 +6,7 @@
 /*   By: rzarate <rzarate@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/29 04:03:36 by rzarate           #+#    #+#             */
-/*   Updated: 2018/04/02 11:32:50 by rzarate          ###   ########.fr       */
+/*   Updated: 2018/04/02 18:48:26 by rzarate          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,16 +57,16 @@ void			get_player_data(t_filler *game)
 	if (game->player->my_n == 1)
 	{
 		game->player->my_c = 'o';
-		game->player->my_C = 'O';
+		game->player->my_cap_c = 'O';
 		game->player->opp_c = 'x';
-		game->player->opp_C = 'X';
+		game->player->opp_cap_c = 'X';
 	}
 	else if (game->player->my_n == 2)
 	{
 		game->player->my_c = 'x';
-		game->player->my_C = 'X';
+		game->player->my_cap_c = 'X';
 		game->player->opp_c = 'o';
-		game->player->opp_C = 'O';
+		game->player->opp_cap_c = 'O';
 	}
 	else
 		error_exit(game, 1);

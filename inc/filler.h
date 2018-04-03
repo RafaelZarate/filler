@@ -6,15 +6,15 @@
 /*   By: rzarate <rzarate@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/29 03:57:11 by rzarate           #+#    #+#             */
-/*   Updated: 2018/04/01 09:18:23 by rzarate          ###   ########.fr       */
+/*   Updated: 2018/04/02 18:47:33 by rzarate          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FILLER_H
 # define FILLER_H
 
-#include "../src/libft/libft.h"
-#include <limits.h>
+# include "../src/libft/libft.h"
+# include <limits.h>
 
 /*
 **	STRUCTURES
@@ -24,16 +24,16 @@ typedef	struct	s_moves
 {
 	int				coords[2];
 	int				score;
-	struct	s_moves	*next;
+	struct s_moves	*next;
 }				t_moves;
 
 typedef	struct	s_player
 {
 	int		my_n;
 	char	my_c;
-	char	my_C;
+	char	my_cap_c;
 	char	opp_c;
-	char	opp_C;
+	char	opp_cap_c;
 }				t_player;
 
 typedef	struct	s_board
@@ -71,7 +71,7 @@ typedef	struct	s_filler
 }				t_filler;
 
 /*
-**	MACROS 
+**	MACROS
 */
 
 # define TRUE 1
@@ -85,30 +85,30 @@ typedef	struct	s_filler
 **	PARSING
 */
 
-void	get_player_data(t_filler *game);
-void	get_turn_data(t_filler *game);
-void	generate_metadata(t_filler *game);
+void			get_player_data(t_filler *game);
+void			get_turn_data(t_filler *game);
+void			generate_metadata(t_filler *game);
 
 /*
 **	ALGORITHM
 */
 
-int		make_move(t_filler *game);
-int		get_score(t_filler *game, int y, int x);
-void	create_heatmap(t_filler *game);
+int				make_move(t_filler *game);
+int				get_score(t_filler *game, int y, int x);
+void			create_heatmap(t_filler *game);
 
 /*
 **	UTILITIES
 */
 
-void	initialize_game(t_filler *game);
-void	finalize_game(t_filler *game);
-void	end_turn(t_filler *game);
-void	error_exit(t_filler *game, int stage);
+void			initialize_game(t_filler *game);
+void			finalize_game(t_filler *game);
+void			end_turn(t_filler *game);
+void			error_exit(t_filler *game, int stage);
 
-t_moves	*new_move(int y, int x, int score);
-void	add_move(t_moves **moves, t_moves *new_move);
-void	delone_move(t_moves **moves);
-void	del_moves(t_moves **moves);
+t_moves			*new_move(int y, int x, int score);
+void			add_move(t_moves **moves, t_moves *new_move);
+void			delone_move(t_moves **moves);
+void			del_moves(t_moves **moves);
 
 #endif

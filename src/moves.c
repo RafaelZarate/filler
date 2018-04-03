@@ -6,7 +6,7 @@
 /*   By: rzarate <rzarate@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/31 02:09:54 by rzarate           #+#    #+#             */
-/*   Updated: 2018/04/02 10:35:16 by rzarate          ###   ########.fr       */
+/*   Updated: 2018/04/02 18:48:48 by rzarate          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ static	int		valid_placement(t_filler *game, int y, int x)
 		adj_y = y + game->piece->adj_coords[i][0];
 		adj_x = x + game->piece->adj_coords[i][1];
 		if (game->board->map[adj_y][adj_x] == game->player->opp_c ||
-				game->board->map[adj_y][adj_x] == game->player->opp_C)
+				game->board->map[adj_y][adj_x] == game->player->opp_cap_c)
 			return (FALSE);
 		else if (game->board->map[adj_y][adj_x] == game->player->my_c ||
-				game->board->map[adj_y][adj_x] == game->player->my_C)
+				game->board->map[adj_y][adj_x] == game->player->my_cap_c)
 			c++;
 	}
 	if (c == 1)

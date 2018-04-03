@@ -6,7 +6,7 @@
 /*   By: rzarate <rzarate@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/31 08:29:09 by rzarate           #+#    #+#             */
-/*   Updated: 2018/04/02 11:43:22 by rzarate          ###   ########.fr       */
+/*   Updated: 2018/04/02 18:43:45 by rzarate          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,10 @@ static	void	initiate_heatmap(t_filler *game)
 		while (++x < game->board->width)
 		{
 			if (game->board->map[y][x] == game->player->my_c ||
-					game->board->map[y][x] == game->player->my_C)
+					game->board->map[y][x] == game->player->my_cap_c)
 				game->board->heatmap[y][x] = -1;
 			else if (game->board->map[y][x] == game->player->opp_c ||
-					game->board->map[y][x] == game->player->opp_C)
+					game->board->map[y][x] == game->player->opp_cap_c)
 				game->board->heatmap[y][x] = 0;
 			else
 				game->board->heatmap[y][x] = -10;
